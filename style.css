@@ -15,8 +15,6 @@
     --no: #c94b59;
 }
 
-/* Global */
-
 html,
 body {
     margin: 0;
@@ -29,8 +27,6 @@ body {
 body {
     overscroll-behavior: auto;
 }
-
-/* Header */
 
 header {
     background: rgba(255, 255, 255, 0.94) !important;
@@ -51,8 +47,6 @@ header .text-tertiary {
 header .rounded-lg {
     border-radius: 12px;
 }
-
-/* Main Content */
 
 main,
 .bg-surface-base {
@@ -81,8 +75,6 @@ main .bg-surface-elevated {
     background: #f0f4f8 !important;
 }
 
-/* Text */
-
 main .text-text-primary,
 main .text-on-surface {
     color: var(--ink) !important;
@@ -108,8 +100,6 @@ main .text-on-primary-container {
     color: #ffffff !important;
 }
 
-/* Secondary Colors */
-
 main .bg-secondary-container {
     background: #fff0d9 !important;
 }
@@ -117,8 +107,6 @@ main .bg-secondary-container {
 main .text-secondary {
     color: #a56a13 !important;
 }
-
-/* True / False Indicators */
 
 main .bg-binary-true {
     background: var(--yes) !important;
@@ -136,8 +124,6 @@ main .text-binary-false {
     color: var(--no) !important;
 }
 
-/* Form Elements */
-
 main input,
 main textarea {
     background: #f7f9fc !important;
@@ -151,8 +137,6 @@ main textarea:focus {
     outline: 2px solid #8ac4ba !important;
     box-shadow: none !important;
 }
-
-/* Buttons */
 
 button {
     cursor: pointer;
@@ -173,8 +157,6 @@ main button:active {
     transform: translateY(1px);
 }
 
-/* Navigation Tabs */
-
 .tab-btn {
     border: 1px solid transparent;
 }
@@ -188,8 +170,6 @@ main button:active {
 .tab-btn.active-tab span {
     color: #ffffff !important;
 }
-
-/* Tables */
 
 main table {
     border-collapse: separate !important;
@@ -212,8 +192,6 @@ main tbody tr:hover {
     background: #f2f8f6 !important;
 }
 
-/* Footer */
-
 footer {
     background: #183b3a !important;
     color: #ffffff !important;
@@ -225,14 +203,10 @@ footer .text-tertiary {
     color: #e2f0ed !important;
 }
 
-/* Toast Notifications */
-
 #toast-container > div {
     background: #173f3b !important;
     color: #ffffff !important;
 }
-
-/* Responsive Design */
 
 @media (max-width: 700px) {
     header .h-16 {
