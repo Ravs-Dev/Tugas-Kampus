@@ -1,6 +1,4 @@
 let formulaInputTimer = null;
-let cachedSimulatorData = null;
-let cachedArgumentData = null;
 
 // ========================================
 // TAB SWITCHING
@@ -16,12 +14,12 @@ function switchMainTab(tabKey) {
         if (t === tabKey) {
             if (panel) panel.classList.remove('hidden');
             if (btn) {
-                btn.className = 'tab-btn active-tab flex items-center gap-space-xs px-space-md py-2.5 rounded-lg font-headline-sm transition-all duration-200';
+                btn.className = 'tab-btn active-tab flex items-center gap-2 px-5 py-3 rounded-xl font-headline text-sm transition-all duration-200';
             }
         } else {
             if (panel) panel.classList.add('hidden');
             if (btn) {
-                btn.className = 'tab-btn flex items-center gap-space-xs px-space-md py-2.5 rounded-lg font-headline-sm text-text-secondary hover:text-on-surface hover:bg-surface-elevated/50 transition-all duration-200';
+                btn.className = 'tab-btn flex items-center gap-2 px-5 py-3 rounded-xl font-headline text-sm text-muted hover:text-ink hover:bg-elevated transition-all duration-200';
             }
         }
     });
@@ -37,17 +35,11 @@ function switchMainTab(tabKey) {
             (tabKey === 'panduan' && path === 'panduan-inferensi') ||
             (tabKey === 'kelompok' && path === 'anggota-kelompok')
         ) {
-            link.className = 'px-space-md py-space-sm rounded-lg font-body-md text-body-md bg-surface-elevated text-primary font-semibold shadow-[0_0_12px_rgba(79,70,229,0.25)]';
+            link.className = 'px-4 py-2 rounded-lg font-body text-sm bg-brand text-white font-semibold shadow-md shadow-brand/30 transition-all';
         } else {
-            link.className = 'px-space-md py-space-sm rounded-lg font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all';
+            link.className = 'px-4 py-2 rounded-lg font-body text-sm text-muted hover:text-ink hover:bg-white transition-all';
         }
     });
-
-    if (tabKey === 'simulator' && !cachedSimulatorData) {
-        evaluateSimulatorFormula();
-    } else if (tabKey === 'argumen' && !cachedArgumentData) {
-        verifyCurrentArgument();
-    }
 }
 
 function setupHeaderNavSync() {
@@ -84,7 +76,7 @@ function normalizeExpression(expr) {
         .replace(/-->/g, '→')
         .replace(/implies/gi, '→')
         .replace(/&&/g, '∧')
-        .replace(/&/g, '')
+        .replace(/&/g, '∧')
         .replace(/and/gi, '∧')
         .replace(/\|\|/g, '∨')
         .replace(/\|/g, '∨')
@@ -104,7 +96,7 @@ function tokenize(str) {
     while (i < str.length) {
         const char = str[i];
 
-        if (['(', ')', '¬', '', '∨', '→', '↔', '⊕'].includes(char)) {
+        if (['(', ')', '¬', '∧', '∨', '→', '↔', '⊕'].includes(char)) {
             tokens.push(char);
             i++;
         } else if (/[a-zA-Z]/.test(char)) {
@@ -176,11 +168,11 @@ function updateFormulaStatus(isValid) {
     if (!status) return;
 
     if (isValid) {
-        status.className = 'text-binary-true font-medium flex items-center gap-1';
-        status.innerHTML = '<span class="material-symbols-outlined text-[14px]">check_circle</span> Sintaks Terbaca';
+        status.className = 'text-success font-semibold flex items-center gap-1';
+        status.innerHTML = '<span class="material-symbols-outlined text-sm">check_circle</span> Sintaks Terbaca';
     } else {
-        status.className = 'text-error font-medium flex items-center gap-1';
-        status.innerHTML = '<span class="material-symbols-outlined text-[14px]">error</span> Sintaks Error';
+        status.className = 'text-danger font-semibold flex items-center gap-1';
+        status.innerHTML = '<span class="material-symbols-outlined text-sm">error</span> Sintaks Error';
     }
 }
 
@@ -200,10 +192,6 @@ function evaluateSimulatorFormula() {
         console.error('Error evaluating formula:', error);
         updateFormulaStatus(false);
     }
-}
-
-function verifyCurrentArgument() {
-    console.log('Verifying argument...');
 }
 
 // ========================================
