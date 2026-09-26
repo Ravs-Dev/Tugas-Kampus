@@ -116,7 +116,7 @@ function tokenize(str) {
 }
 
 // ========================================
-// FUNGSI TAMBAHAN (yang dipanggil tapi belum ada)
+// FUNGSI TAMBAHAN YANG DIPANGGIL HTML
 // ========================================
 
 function insertSymbol(symbol) {
@@ -201,12 +201,10 @@ function verifyCurrentArgument() {
 }
 
 // ========================================
-// INISIALISASI SAAT DOM READY
+// INISIALISASI SAAT HALAMAN DIMUAT
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function() {
   setupHeaderNavSync();
-  
-  // Set tab simulator sebagai default saat halaman dimuat
   switchMainTab('simulator');
 });
