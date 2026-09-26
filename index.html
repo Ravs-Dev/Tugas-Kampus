@@ -71,19 +71,15 @@
 <main class="w-full pt-16 bg-surface-base min-h-screen">
     <div class="flex flex-col w-full">
 
-        <!-- Interactive View Switcher & Notification Toast Container -->
         <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none" id="toast-container"></div>
 
-        <!-- Top Hero & Context Control Area -->
         <section class="relative w-full px-margin pt-space-md pb-space-lg overflow-hidden bg-gradient-to-b from-surface-card/40 via-surface-base to-surface-base">
 
-            <!-- Atmospheric Ambient Glows -->
             <div class="absolute -top-24 left-1/4 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -top-20 right-1/4 w-80 h-80 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="max-w-7xl mx-auto flex flex-col gap-space-md relative z-10">
 
-                <!-- Breadcrumb & Engine Status Bar -->
                 <div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-xs">
                     <div class="flex items-center gap-space-xs font-label-code-sm text-label-code-sm text-text-muted">
                         <span class="text-tertiary">PJBL-1</span>
@@ -108,7 +104,6 @@
                     </div>
                 </div>
 
-                <!-- Main Tab Selection Navigation -->
                 <div class="flex items-center justify-between flex-wrap gap-space-md bg-surface-card/90 backdrop-blur-xl p-space-xs rounded-xl shadow-xl">
                     <div class="flex flex-wrap items-center gap-1.5" role="tablist">
                         <button class="tab-btn active-tab flex items-center gap-space-xs px-space-md py-2.5 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 bg-surface-elevated text-primary shadow-[0_0_16px_rgba(99,102,241,0.25)]" id="nav-btn-simulator" onclick="switchMainTab('simulator')">
@@ -132,7 +127,6 @@
                         </button>
                     </div>
 
-                    <!-- Quick Syntax Help Icon -->
                     <div class="hidden md:flex items-center gap-space-sm pr-space-sm">
                         <span class="font-label-code-sm text-label-code-sm text-text-muted">Format Operator:</span>
                         <span class="px-2 py-0.5 rounded bg-surface-container font-label-code-sm text-label-code-sm text-tertiary">¬ ∧ ∨ → ↔ ⊕</span>
@@ -141,15 +135,10 @@
             </div>
         </section>
 
-        <!-- CONTENT PANELS CONTAINER -->
         <div class="max-w-7xl mx-auto w-full px-margin pb-24">
 
-            <!-- ========================================================================= -->
-            <!-- TAB 1: SIMULATOR PROPOSISI                                               -->
-            <!-- ========================================================================= -->
             <section class="tab-panel flex flex-col gap-space-lg w-full" id="panel-simulator">
 
-                <!-- Section Header -->
                 <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
                     <div class="flex flex-col gap-space-xs max-w-3xl">
                         <div class="flex items-center gap-2">
@@ -164,7 +153,6 @@
                         </p>
                     </div>
 
-                    <!-- Live Action Buttons for Formula -->
                     <div class="flex items-center gap-space-xs shrink-0">
                         <button class="px-space-sm py-1.5 rounded-lg bg-surface-elevated hover:bg-surface-container-highest text-tertiary text-body-sm font-label-code-sm transition-all flex items-center gap-1" onclick="loadFormulaPreset('(p ∧ q) → r')" type="button">
                             <span class="material-symbols-outlined text-[16px]">restart_alt</span>
@@ -178,10 +166,8 @@
                     </div>
                 </div>
 
-                <!-- Main Formula Input & Virtual Keypad Card -->
                 <div class="bg-surface-card rounded-2xl shadow-2xl p-space-md lg:p-space-lg flex flex-col gap-space-md">
 
-                    <!-- Interactive Formula Bar -->
                     <div class="flex flex-col gap-space-xs">
                         <label class="font-label-code-sm text-label-code-sm text-text-secondary uppercase tracking-wider flex items-center justify-between" for="formula-input">
                             <span class="flex items-center gap-1.5">
@@ -215,7 +201,6 @@
                         </div>
                     </div>
 
-                    <!-- Virtual Operator & Proposition Keypad -->
                     <div class="flex flex-col gap-space-sm pt-space-xs">
                         <div class="flex flex-wrap items-center justify-between gap-space-sm">
                             <span class="font-label-code-sm text-label-code-sm text-text-muted uppercase">Papan Tombol Operator Cepat (Ketuk untuk Menyisipkan):</span>
@@ -223,7 +208,6 @@
                         </div>
 
                         <div class="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 gap-2">
-                            <!-- Proposition Variables -->
                             <button class="h-11 rounded-lg bg-surface-elevated hover:bg-surface-container-highest text-primary font-label-code-lg text-label-code-lg flex flex-col items-center justify-center transition-transform active:scale-95 shadow-sm" onclick="insertSymbol('p')" type="button">
                                 <span>p</span>
                                 <span class="text-[9px] text-text-muted font-body-sm">Var 1</span>
@@ -244,7 +228,6 @@
                                 <span class="text-[9px] text-text-muted font-body-sm">Var 4</span>
                             </button>
 
-                            <!-- Fundamental Logic Operators -->
                             <button class="h-11 rounded-lg bg-surface-elevated hover:bg-surface-container-highest text-secondary font-label-code-lg text-label-code-lg flex flex-col items-center justify-center transition-transform active:scale-95 shadow-sm" onclick="insertSymbol('¬')" type="button">
                                 <span class="font-bold">¬</span>
                                 <span class="text-[9px] text-text-muted font-body-sm">NOT (!)</span>
@@ -289,7 +272,6 @@
                 </div>
             </section>
 
-            <!-- Placeholder untuk tab lainnya agar JS tidak error -->
             <section class="tab-panel flex flex-col gap-space-lg w-full hidden" id="panel-argumen">
                 <div class="bg-surface-card rounded-2xl shadow-2xl p-space-md text-center">
                     <h2 class="text-2xl font-bold">Verifikator Argumen</h2>
