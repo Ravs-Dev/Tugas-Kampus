@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogicDiskrit - Truth Table Generator</title>
+    <title>LogicDiskrit - Complete Suite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -21,79 +21,247 @@
                 </div>
                 <div class="logo-text">
                     <h1>LogicDiskrit</h1>
-                    <span>Truth Table Generator</span>
+                    <span>Discrete Mathematics Suite</span>
                 </div>
             </div>
             <div class="status-badge">
                 <span class="pulse"></span>
-                <span>System Active</span>
+                <span>Engine v2.4 Active</span>
             </div>
         </header>
 
+        <nav class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('simulator')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Simulator Proposisi
+            </button>
+            <button class="tab-btn" onclick="switchTab('argumen')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Verifikator Argumen
+            </button>
+            <button class="tab-btn" onclick="switchTab('panduan')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Panduan Inferensi
+            </button>
+            <button class="tab-btn" onclick="switchTab('tim')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Tim Pengembangan
+            </button>
+        </nav>
+
         <main class="main-content">
-            <section class="input-section">
-                <div class="section-header">
-                    <h2>Expression Input</h2>
-                    <p>Enter your logical expression using P and Q variables</p>
-                </div>
-
-                <div class="input-wrapper">
-                    <div class="input-field">
-                        <span class="input-label">f(x) =</span>
-                        <input type="text" id="expression" placeholder="Example: (P ∧ Q) → ¬P" value="(P ∧ Q) → ¬P">
+            <!-- TAB 1: SIMULATOR PROPOSISI -->
+            <section id="panel-simulator" class="tab-panel active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Truth Table Simulator</h2>
+                        <p>Masukkan ekspresi logika (p, q, r, s, t) dengan operator ¬, ∧, ∨, →, ↔, ⊕</p>
                     </div>
-                    <button class="btn-clear" onclick="clearInput()">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 6L6 18M6 6l12 12"/>
-                        </svg>
-                        Clear
+                    
+                    <div class="input-wrapper">
+                        <div class="input-field">
+                            <span class="input-label">f(x) =</span>
+                            <input type="text" id="formula-input" placeholder="Contoh: (p ∧ q) → r" value="(p ∧ q) → r">
+                        </div>
+                        <button class="btn-clear" onclick="clearFormulaInput()">Clear</button>
+                    </div>
+
+                    <div class="keypad">
+                        <div class="keypad-group">
+                            <span class="group-label">Variabel</span>
+                            <div class="keys">
+                                <button onclick="insertSymbol('p')">p</button>
+                                <button onclick="insertSymbol('q')">q</button>
+                                <button onclick="insertSymbol('r')">r</button>
+                                <button onclick="insertSymbol('s')">s</button>
+                                <button onclick="insertSymbol('t')">t</button>
+                            </div>
+                        </div>
+                        <div class="keypad-group">
+                            <span class="group-label">Operator</span>
+                            <div class="keys">
+                                <button onclick="insertSymbol('¬')">¬</button>
+                                <button onclick="insertSymbol(' ∧ ')">∧</button>
+                                <button onclick="insertSymbol(' ∨ ')">∨</button>
+                                <button onclick="insertSymbol(' → ')">→</button>
+                                <button onclick="insertSymbol(' ↔ ')">↔</button>
+                                <button onclick="insertSymbol(' ⊕ ')">⊕</button>
+                            </div>
+                        </div>
+                        <div class="keypad-group">
+                            <span class="group-label">Kurung</span>
+                            <div class="keys">
+                                <button onclick="insertSymbol('(')">(</button>
+                                <button onclick="insertSymbol(')')">)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="evaluateSimulatorFormula()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        Generate Truth Table
                     </button>
+
+                    <div id="metrics-container" class="metrics-grid" style="display: none;">
+                        <div class="metric-card">
+                            <span class="metric-label">Klasifikasi</span>
+                            <span class="metric-value" id="metric-class">-</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Rasio Benar</span>
+                            <span class="metric-value" id="metric-ratio">-</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Variabel</span>
+                            <span class="metric-value" id="metric-vars">-</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-label">Total Baris</span>
+                            <span class="metric-value" id="metric-rows">-</span>
+                        </div>
+                    </div>
+
+                    <div id="result-simulator" class="result-container"></div>
                 </div>
-
-                <div class="operators-section">
-                    <div class="operator-group">
-                        <span class="group-label">Variables</span>
-                        <div class="operator-buttons">
-                            <button onclick="insert('P')" class="btn-operator var">P</button>
-                            <button onclick="insert('Q')" class="btn-operator var">Q</button>
-                        </div>
-                    </div>
-
-                    <div class="operator-group">
-                        <span class="group-label">Operators</span>
-                        <div class="operator-buttons">
-                            <button onclick="insert('¬')" class="btn-operator op">¬ NOT</button>
-                            <button onclick="insert(' ∧ ')" class="btn-operator op">∧ AND</button>
-                            <button onclick="insert(' ∨ ')" class="btn-operator op">∨ OR</button>
-                            <button onclick="insert(' → ')" class="btn-operator op">→ IMPLIES</button>
-                            <button onclick="insert(' ↔ ')" class="btn-operator op">↔ IFF</button>
-                        </div>
-                    </div>
-
-                    <div class="operator-group">
-                        <span class="group-label">Symbols</span>
-                        <div class="operator-buttons">
-                            <button onclick="insert('(')" class="btn-operator sym">(</button>
-                            <button onclick="insert(')')" class="btn-operator sym">)</button>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn-generate" onclick="generateTable()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v20M2 12h20"/>
-                    </svg>
-                    Generate Truth Table
-                </button>
             </section>
 
-            <section id="result" class="result-section">
-                <!-- Table will be generated here -->
+            <!-- TAB 2: VERIFIKATOR ARGUMEN -->
+            <section id="panel-argumen" class="tab-panel">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Verifikator Argumen</h2>
+                        <p>Masukkan premis dan konklusi untuk mengecek validitas argumen</p>
+                    </div>
+
+                    <div id="premises-container">
+                        <div class="premise-row">
+                            <span class="premise-badge">P₁</span>
+                            <input type="text" class="premise-input" value="p → q" placeholder="Premis 1">
+                            <button class="btn-icon" onclick="removePremise(this)">✕</button>
+                        </div>
+                        <div class="premise-row">
+                            <span class="premise-badge">P₂</span>
+                            <input type="text" class="premise-input" value="p" placeholder="Premis 2">
+                            <button class="btn-icon" onclick="removePremise(this)">✕</button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-secondary" onclick="addPremise()">+ Tambah Premis</button>
+
+                    <div class="conclusion-wrapper">
+                        <span class="conclusion-label">∴ Konklusi:</span>
+                        <input type="text" id="conclusion-input" value="q" placeholder="Konklusi">
+                    </div>
+
+                    <button class="btn-primary" onclick="verifyCurrentArgument()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Verifikasi Validitas
+                    </button>
+
+                    <div id="result-argumen" class="result-container"></div>
+                </div>
+            </section>
+
+            <!-- TAB 3: PANDUAN INFERENSI -->
+            <section id="panel-panduan" class="tab-panel">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Panduan & Aturan Inferensi</h2>
+                        <p>Referensi cepat aturan penarikan kesimpulan dalam logika proposisional</p>
+                    </div>
+                    <div class="rules-grid">
+                        <div class="rule-card">
+                            <h3>Modus Ponens</h3>
+                            <div class="rule-formula">
+                                <p>Premis 1: p → q</p>
+                                <p>Premis 2: p</p>
+                                <hr>
+                                <p>Konklusi: ∴ q</p>
+                            </div>
+                        </div>
+                        <div class="rule-card">
+                            <h3>Modus Tollens</h3>
+                            <div class="rule-formula">
+                                <p>Premis 1: p → q</p>
+                                <p>Premis 2: ¬q</p>
+                                <hr>
+                                <p>Konklusi: ∴ ¬p</p>
+                            </div>
+                        </div>
+                        <div class="rule-card">
+                            <h3>Silogisme Hipotetik</h3>
+                            <div class="rule-formula">
+                                <p>Premis 1: p → q</p>
+                                <p>Premis 2: q → r</p>
+                                <hr>
+                                <p>Konklusi: ∴ p → r</p>
+                            </div>
+                        </div>
+                        <div class="rule-card">
+                            <h3>Silogisme Disjungtif</h3>
+                            <div class="rule-formula">
+                                <p>Premis 1: p ∨ q</p>
+                                <p>Premis 2: ¬p</p>
+                                <hr>
+                                <p>Konklusi: ∴ q</p>
+                            </div>
+                        </div>
+                        <div class="rule-card">
+                            <h3>Hukum De Morgan</h3>
+                            <div class="rule-formula">
+                                <p>¬(p ∧ q) ≡ ¬p ∨ ¬q</p>
+                                <p>¬(p ∨ q) ≡ ¬p ∧ ¬q</p>
+                            </div>
+                        </div>
+                        <div class="rule-card">
+                            <h3>Resolution</h3>
+                            <div class="rule-formula">
+                                <p>Premis 1: p ∨ q</p>
+                                <p>Premis 2: ¬p ∨ r</p>
+                                <hr>
+                                <p>Konklusi: ∴ q ∨ r</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: TIM PENGEMBANGAN -->
+            <section id="panel-tim" class="tab-panel">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Tim Pengembangan</h2>
+                        <p>Grup G - Proyek Pembelajaran Berbasis Masalah (PJBL) Matematika Diskrit</p>
+                    </div>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-avatar">MF</div>
+                            <h3>Muhammad Fakhrurazi</h3>
+                            <span class="team-role">Project Coordinator & Lead Developer</span>
+                            <span class="team-nim">NIM: 20230001</span>
+                            <p class="team-desc">Bertanggung jawab atas arsitektur sistem, pengembangan fitur evaluator logika, dan manajemen proyek.</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">RA</div>
+                            <h3>Rizky Ananda</h3>
+                            <span class="team-role">UI/UX Designer & Frontend</span>
+                            <span class="team-nim">NIM: 20230002</span>
+                            <p class="team-desc">Merancang antarmuka pengguna, implementasi desain responsif, dan pengalaman pengguna yang intuitif.</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">SP</div>
+                            <h3>Siti Pertiwi</h3>
+                            <span class="team-role">Quality Assurance & Documentation</span>
+                            <span class="team-nim">NIM: 20230003</span>
+                            <p class="team-desc">Melakukan pengujian sistem, validasi tabel kebenaran, dan penyusunan dokumentasi proyek.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer class="footer">
-            <p>© 2026 LogicDiskrit • Discrete Mathematics Project</p>
+            <p>© 2026 LogicDiskrit • Discrete Mathematics Project • S1 Ilmu Komputer</p>
         </footer>
     </div>
 
