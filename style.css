@@ -2,55 +2,45 @@
    LogicDiskrit - Custom Styles
    ======================================== */
 
-:root {
-    --ink: #17243b;
-    --muted: #617089;
-    --paper: #f4f7fb;
-    --panel: #ffffff;
-    --line: #e1e8f1;
-    --brand: #176b62;
-    --brand-dark: #0d514b;
-    --accent: #e6a23c;
-    --yes: #16835f;
-    --no: #c94b59;
-}
-
-html,
-body {
+html, body {
     margin: 0;
-    background: var(--paper) !important;
-    color: var(--ink) !important;
-    font-family: Inter, system-ui, sans-serif !important;
+    padding: 0;
+    background-color: #f3f6fb !important;
+    color: #1a1d21 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
     overscroll-behavior: auto;
 }
 
+/* Header Styles */
 header {
     background: rgba(255, 255, 255, 0.94) !important;
-    box-shadow: 0 3px 20px #1b33500d !important;
-    border-bottom: 1px solid var(--line);
+    box-shadow: 0 3px 20px rgba(27, 51, 80, 0.05) !important;
+    border-bottom: 1px solid #e1e8f1;
 }
 
 header .bg-surface-elevated {
     background: #eaf3f1 !important;
-    color: var(--brand) !important;
+    color: #176b62 !important;
 }
 
 header .text-primary,
 header .text-tertiary {
-    color: var(--brand) !important;
+    color: #176b62 !important;
 }
 
 header .rounded-lg {
     border-radius: 12px;
 }
 
+/* Main Content */
 main,
 .bg-surface-base {
-    background: var(--paper) !important;
+    background: #f4f7fb !important;
 }
 
 main > div > section:first-child {
@@ -63,9 +53,9 @@ main > div > section:first-child {
 }
 
 main .bg-surface-card {
-    background: var(--panel) !important;
-    border: 1px solid var(--line);
-    box-shadow: 0 12px 32px #1e36500a !important;
+    background: #ffffff !important;
+    border: 1px solid #e1e8f1;
+    box-shadow: 0 12px 32px rgba(30, 54, 80, 0.04) !important;
     border-radius: 18px !important;
 }
 
@@ -75,24 +65,25 @@ main .bg-surface-elevated {
     background: #f0f4f8 !important;
 }
 
+/* Text Colors */
 main .text-text-primary,
 main .text-on-surface {
-    color: var(--ink) !important;
+    color: #17243b !important;
 }
 
 main .text-text-secondary,
 main .text-text-muted,
 main .text-on-surface-variant {
-    color: var(--muted) !important;
+    color: #617089 !important;
 }
 
 main .text-primary,
 main .text-tertiary {
-    color: var(--brand) !important;
+    color: #176b62 !important;
 }
 
 main .bg-primary-container {
-    background: var(--brand) !important;
+    background: #176b62 !important;
     color: #ffffff !important;
 }
 
@@ -108,26 +99,28 @@ main .text-secondary {
     color: #a56a13 !important;
 }
 
+/* True / False Indicators */
 main .bg-binary-true {
-    background: var(--yes) !important;
+    background: #16835f !important;
 }
 
 main .text-binary-true {
-    color: var(--yes) !important;
+    color: #16835f !important;
 }
 
 main .bg-binary-false {
-    background: var(--no) !important;
+    background: #c94b59 !important;
 }
 
 main .text-binary-false {
-    color: var(--no) !important;
+    color: #c94b59 !important;
 }
 
+/* Form Elements */
 main input,
 main textarea {
     background: #f7f9fc !important;
-    color: var(--ink) !important;
+    color: #17243b !important;
     border: 1px solid #d9e2ec !important;
     border-radius: 10px !important;
 }
@@ -138,6 +131,7 @@ main textarea:focus {
     box-shadow: none !important;
 }
 
+/* Buttons */
 button {
     cursor: pointer;
 }
@@ -157,20 +151,22 @@ main button:active {
     transform: translateY(1px);
 }
 
+/* Navigation Tabs */
 .tab-btn {
     border: 1px solid transparent;
 }
 
 .tab-btn.active-tab {
-    background: var(--brand) !important;
+    background: #176b62 !important;
     color: #ffffff !important;
-    box-shadow: 0 5px 14px #176b6229 !important;
+    box-shadow: 0 5px 14px rgba(23, 107, 98, 0.16) !important;
 }
 
 .tab-btn.active-tab span {
     color: #ffffff !important;
 }
 
+/* Tables */
 main table {
     border-collapse: separate !important;
     border-spacing: 0;
@@ -192,6 +188,7 @@ main tbody tr:hover {
     background: #f2f8f6 !important;
 }
 
+/* Footer */
 footer {
     background: #183b3a !important;
     color: #ffffff !important;
@@ -203,11 +200,13 @@ footer .text-tertiary {
     color: #e2f0ed !important;
 }
 
+/* Toast Notifications */
 #toast-container > div {
     background: #173f3b !important;
     color: #ffffff !important;
 }
 
+/* Responsive Design */
 @media (max-width: 700px) {
     header .h-16 {
         height: auto;
@@ -229,4 +228,23 @@ footer .text-tertiary {
         font-size: 26px !important;
         line-height: 1.25 !important;
     }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f3f6fb;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c4c9d0;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a0a6b0;
 }
