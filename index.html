@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PJBL-2 | Operasi Himpunan & Diagram Venn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">PJBL-2 MATEMATIKA</p>
+        <h1>Operasi Himpunan & Diagram Venn Otomatis</h1>
+        <p class="subtitle">Implementasi operasi himpunan, visualisasi Diagram Venn, dan Prinsip Inklusi-Eksklusi menggunakan HTML, CSS, dan JavaScript.</p>
+      </div>
+      <div class="badge">Tanpa Database</div>
+    </header>
+
+    <section class="card input-card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">INPUT DATA</p>
+          <h2>Masukkan Dataset</h2>
+        </div>
+        <div class="dataset-buttons">
+          <button id="dataset1" class="secondary">Dataset 1</button>
+          <button id="dataset2" class="secondary">Dataset 2</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          <span>Himpunan Semesta (U)</span>
+          <input id="universe" type="text" placeholder="Contoh: 1,2,3,4,5,6,7,8,9,10">
+        </label>
+        <label>
+          <span>Himpunan A</span>
+          <input id="setA" type="text" placeholder="Contoh: 1,2,3,4,5">
+        </label>
+        <label>
+          <span>Himpunan B</span>
+          <input id="setB" type="text" placeholder="Contoh: 4,5,6,7">
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button id="calculate" class="primary">Hitung & Tampilkan Diagram</button>
+        <button id="reset" class="ghost">Reset</button>
+      </div>
+      <p id="message" class="message"></p>
+    </section>
+
+    <section class="two-col">
+      <article class="card">
+        <p class="eyebrow">HASIL OPERASI</p>
+        <h2>Operasi Himpunan</h2>
+        <div class="results">
+          <div class="result-item"><span>A ∪ B</span><strong id="union">-</strong></div>
+          <div class="result-item"><span>A ∩ B</span><strong id="intersection">-</strong></div>
+          <div class="result-item"><span>A − B</span><strong id="aMinusB">-</strong></div>
+          <div class="result-item"><span>B − A</span><strong id="bMinusA">-</strong></div>
+          <div class="result-item"><span>A<sup>c</sup></span><strong id="compA">-</strong></div>
+          <div class="result-item"><span>B<sup>c</sup></span><strong id="compB">-</strong></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="eyebrow">INKLUSI–EKSKLUSI</p>
+        <h2>Perhitungan Otomatis</h2>
+        <div class="formula-box">
+          <div>|A ∪ B| = |A| + |B| − |A ∩ B|</div>
+          <strong id="formulaResult">-</strong>
+        </div>
+        <div class="stats-grid">
+          <div><span>|A|</span><strong id="countA">0</strong></div>
+          <div><span>|B|</span><strong id="countB">0</strong></div>
+          <div><span>|A ∩ B|</span><strong id="countIntersection">0</strong></div>
+          <div><span>|A ∪ B|</span><strong id="countUnion">0</strong></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card venn-card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">VISUALISASI</p>
+          <h2>Diagram Venn Otomatis</h2>
+        </div>
+        <p class="small">Angka menunjukkan jumlah anggota di setiap wilayah.</p>
+      </div>
+
+      <div class="venn-wrapper">
+        <svg viewBox="0 0 800 420" role="img" aria-label="Diagram Venn dua himpunan">
+          <rect x="30" y="35" width="740" height="330" rx="24" class="universe-box"></rect>
+          <text x="52" y="70" class="universe-label">U</text>
+          <circle cx="330" cy="205" r="135" class="circle circle-a"></circle>
+          <circle cx="470" cy="205" r="135" class="circle circle-b"></circle>
+          <text x="245" y="115" class="set-label">A</text>
+          <text x="540" y="115" class="set-label">B</text>
+          <text id="vennAOnly" x="285" y="215" class="count-label">0</text>
+          <text id="vennBoth" x="400" y="215" class="count-label">0</text>
+          <text id="vennBOnly" x="515" y="215" class="count-label">0</text>
+          <text id="vennOutside" x="90" y="330" class="outside-label">Di luar A dan B: 0</text>
+        </svg>
+      </div>
+      <div class="venn-details">
+        <div><span>Hanya A</span><strong id="aOnlyMembers">-</strong></div>
+        <div><span>Irisan A dan B</span><strong id="bothMembers">-</strong></div>
+        <div><span>Hanya B</span><strong id="bOnlyMembers">-</strong></div>
+        <div><span>Di luar A dan B</span><strong id="outsideMembers">-</strong></div>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <p class="eyebrow">PETUNJUK</p>
+      <h2>Cara Menggunakan</h2>
+      <ol>
+        <li>Masukkan anggota himpunan dengan pemisah koma, misalnya <code>1,2,3,4,5</code>.</li>
+        <li>Pastikan anggota A dan B termasuk di dalam himpunan semesta U.</li>
+        <li>Klik <b>Hitung & Tampilkan Diagram</b>.</li>
+        <li>Gunakan tombol Dataset 1 dan Dataset 2 untuk pengujian contoh.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
